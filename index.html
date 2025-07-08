@@ -15,7 +15,6 @@
     }
 
     html {
-      scroll-behavior: smooth;
       scroll-padding-top: 120px; 
     }
 
@@ -23,10 +22,12 @@
       background: rgba(11, 5, 27, 0.85);
       color: #fef9f9d7;
       transition: background 0.5s, color 0.5s;
+      max-width: 100vw;
+      overflow-x: hidden;
     }
 
     body.light {
-      background: linear-gradient(rgb(237, 162, 218),rgb(180, 209, 229), rgba(198, 198, 198, 0.615), rgb(229, 156, 229), rgba(146, 198, 236, 0.775), rgba(165, 164, 164, 0.518), rgb(198, 160, 198));
+      background: linear-gradient(rgb(237, 162, 218), rgb(180, 209, 229), rgba(198, 198, 198, 0.615), rgb(229, 156, 229), rgba(146, 198, 236, 0.775), rgba(165, 164, 164, 0.518), rgb(198, 160, 198));
       color: #090909;
     }
 
@@ -44,15 +45,14 @@
       padding: 2rem 4rem;
       background-color: rgba(70, 69, 70, 0.85);
       animation: headerfade 2s ease-in-out;
-    }
-
-    h2, h3 {
-      font-family: Arial, Helvetica, sans-serif;
+      flex-wrap: wrap;
     }
 
     nav {
       display: flex;
       gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     nav a {
@@ -92,8 +92,9 @@
     }
 
     .home img {
-      width: 250px;
-      height: 250px;
+      width: 40%;
+      max-width: 180px;
+      height: auto;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid rgb(0, 4, 9);
@@ -106,15 +107,9 @@
     }
 
     @keyframes floatOnce {
-      0% {
-      transform: translateY(0);
-    }
-      50% {
-      transform: translateY(-15px);
-    }
-      100% {
-     transform: translateY(0);
-    }
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
     }
 
     section {
@@ -177,15 +172,18 @@
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      gap: 3rem;
+      gap: 2rem;
       padding: 1rem 0;
     }
 
+    .project {
+      text-align: center;
+      min-width: 250px;
+    }
+
     .projects-container img {
-      height: 400px;
+      height: 200px;
       width: auto;
-      margin-top: 5%;
-      margin-right: 3%;
       border-radius: 10px;
       transition: transform 0.3s ease;
       box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
@@ -193,10 +191,6 @@
 
     .projects-container img:hover {
       transform: scale(1.05);
-    }
-
-    .rolling {
-      animation: roll 1s linear;
     }
 
     @keyframes fadeInUp {
@@ -215,16 +209,42 @@
     }
 
     @media (max-width: 768px) {
-      header {
+      header, .contact {
+        padding: 1rem;
         flex-direction: column;
+        align-items: center;
+      }
+
+      nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 1rem;
       }
+
       .skills-section {
         flex-direction: column;
       }
+
       .projects-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        overflow-x: scroll;
+        gap: 1rem;
+      }
+
+      .project {
+        min-width: 80%;
+      }
+
+
+      section {
+        margin: 1rem;
+        padding: 1rem;
+      }
+
+      .fixed-icons {
+        left: 10px;
+        top: 100px;
       }
     }
   </style>
@@ -270,23 +290,19 @@
     <div class="skills-section">
       <div class="skills">
         <h3>Technology & styles</h3>
-    
         <div class="skill-item"><i class="fa-brands fa-html5"></i><p>HTML</p></div>
         <div class="skill-item"><i class="fa-solid fa-code"></i><p>C++</p></div>
         <div class="skill-item"><i class="fa-brands fa-css3"></i><p>CSS</p></div>
         <div class="skill-item"><i class="fa-brands fa-python"></i><p>Python</p></div>
         <div class="skill-item"><i class="fa-brands fa-js"></i><p>JavaScript</p></div>
-        
       </div>
 
       <div class="other-box">
-        <h3>Miscillaneous</h3>
+        <h3>Miscellaneous</h3>
         <div class="skill-item"><i class="fa-brands fa-git-alt"></i><p>Git</p></div>
         <div class="skill-item"><i class="fa-brands fa-github"></i><p>GitHub</p></div>
         <div class="skill-item"><i class="fa-solid fa-file-excel"></i><p>Excel</p></div>
-        <div class="skill-item"><i class="fa-solid fa-crop-simple"></i>Canva</div>
-      
-
+        <div class="skill-item"><i class="fa-solid fa-crop-simple"></i><p>Canva</p></div>
       </div>
     </div>
   </section>
@@ -294,10 +310,22 @@
   <section id="projects">
     <h3 style="font-size: 30px;">Projects</h3><br>
     <div class="projects-container">
-      <h4>Animation</h4> <a href="https://r-punitha.github.io/car-Animation/"target="_blank"><img src="car-ss.png" alt="Car Project"></a>
-      <h4>CssLayout</h4><a href="https://r-punitha.github.io/layout/"target="_blank"> <img src="layout-ss.png" alt="Layout Project"></a>
-      <h4>Attributes</h4><a href="https://r-punitha.github.io/htmlattributes/"target="_blank"> <img src="attr-ss.png" alt="Attributes Project"></a>
-      <h4>Animation</h4><a href="https://r-punitha.github.io/Animation/"target="_blank"><img src="animation-ss.png" alt="Animation Project"></a>
+      <div class="project">
+        <h4>Animation</h4>
+        <a href="https://r-punitha.github.io/car-Animation/" target="_blank"><img src="car-ss.png" alt="Car Project"></a>
+      </div>
+      <div class="project">
+        <h4>CssLayout</h4>
+        <a href="https://r-punitha.github.io/layout/" target="_blank"><img src="layout-ss.png" alt="Layout Project"></a>
+      </div>
+      <div class="project">
+        <h4>Attributes</h4>
+        <a href="https://r-punitha.github.io/htmlattributes/" target="_blank"><img src="attr-ss.png" alt="Attributes Project"></a>
+      </div>
+      <div class="project">
+        <h4>Animation</h4>
+        <a href="https://r-punitha.github.io/Animation/" target="_blank"><img src="animation-ss.png" alt="Animation Project"></a>
+      </div>
     </div>
   </section>
 
@@ -312,7 +340,7 @@
   </footer>
 
   <script>
-    const message = "Helloo!,I'm Punitha.";
+    const message = "Helloo!, I'm Punitha.";
     const typeTarget = document.getElementById("typewriter");
     let index = 0;
     let typingTimeout;
@@ -347,7 +375,6 @@
 
       icon.classList.add('rolling');
       setTimeout(() => icon.classList.remove('rolling'), 1000);
-
       startTyping();
     }
 
@@ -356,4 +383,3 @@
   </script>
 </body>
 </html>
-
